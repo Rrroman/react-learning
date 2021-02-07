@@ -8,7 +8,9 @@ class App extends Component {
       <div className="App">
         <div className="app__title">Hello there!</div>
         <Person name="Roman" age="31" />
-        <Person name="Max" age="28" />
+        <Person name="Max" age="28">
+          My hobby is chess.
+        </Person>
         <Person name="Julia" age="21" />
       </div>
     );
