@@ -4,9 +4,14 @@ const person = (props) => {
   return (
     <div>
       <p onClick={props.click}>
-        {props.name} is here and my age is {props.age}, i am feeling like i am{' '}
-        {Math.floor(Math.random() * 60)}.
+        {props.name} is here and my age is {props.age}
       </p>
+      <input
+        type="text"
+        onChange={props.inputNameChange}
+        defaultValue={props.name}
+        onFocus={props.selectInput}
+      />
       <p>{props.children}</p>
     </div>
   );

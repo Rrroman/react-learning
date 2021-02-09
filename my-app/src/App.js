@@ -22,20 +22,37 @@ class App extends Component {
     });
   };
 
+  inputNameChangeHandler = (event) => {
+    this.setState({
+      persons: [
+        { name: 'John', age: 20 },
+        { name: event.target.value, age: 25 },
+        { name: 'Jill', age: 25 },
+      ],
+    });
+  };
+
+  selectInputHandler(event) {
+    event.target.select();
+  }
+
   render() {
     return (
       <div className="App">
         <div className="app__title">Hello there!</div>
-        <button onClick={this.switchNameHandler}>Switch name</button>
+        <button onClick={this.switchNameHandler.bind(this, 'Roman!!!')}>
+          Switch name
+        </button>
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
-          // click={() => this.switchNameHandler()} // slower performance
           click={this.switchNameHandler.bind(this, 'Roman')}
         />
         <Person
           name={this.state.persons[1].name}
           age={this.state.persons[1].age}
+          inputNameChange={this.inputNameChangeHandler}
+          selectInput={this.selectInputHandler}
         >
           My hobby is chess.
         </Person>
