@@ -3,6 +3,14 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
+  style = {
+    backgroundColor: 'coral',
+    padding: '5px',
+    borderRadius: '5px',
+    color: 'forest',
+    cursor: 'pointer',
+  };
+
   state = {
     persons: [
       { name: 'John', age: 25 },
@@ -40,7 +48,10 @@ class App extends Component {
     return (
       <div className="App">
         <div className="app__title">Hello there!</div>
-        <button onClick={this.switchNameHandler.bind(this, 'Roman!!!')}>
+        <button
+          style={this.style}
+          onClick={this.switchNameHandler.bind(this, 'Roman!!!')}
+        >
           Switch name
         </button>
         <Person
