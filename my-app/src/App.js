@@ -6,8 +6,11 @@ import UserOutput from './UserOutput/UserOutput';
 
 class App extends Component {
   style = {
-    backgroundColor: 'coral',
+    display: 'block',
+    margin: '10px auto',
     padding: '5px',
+
+    backgroundColor: 'coral',
     borderRadius: '5px',
     color: 'forest',
     cursor: 'pointer',
@@ -21,6 +24,7 @@ class App extends Component {
     ],
     greeting: 'Hello',
     userName: 'Default User',
+    showNames: false,
   };
 
   switchNameHandler = (newName) => {
@@ -55,33 +59,41 @@ class App extends Component {
     });
   };
 
+  toggleNameHandler = () => {
+    const doesShow = this.state.showNames;
+    this.setState({
+      showNames: !doesShow,
+    });
+  };
+
   render() {
     return (
       <div className="App">
         <div className="app__title">Hello there!</div>
-        <button
-          style={this.style}
-          onClick={this.switchNameHandler.bind(this, 'Roman!!!')}
-        >
-          Switch name
+        <button style={this.style} onClick={this.toggleNameHandler}>
+          Toggle names
         </button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          click={this.switchNameHandler.bind(this, 'Roman')}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          inputNameChange={this.inputNameChangeHandler}
-          selectInput={this.selectInputHandler}
-        >
-          My hobby is chess.
-        </Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-        />
+        {this.state.showNames ? (
+          <div>
+            <Person
+              name={this.state.persons[0].name}
+              age={this.state.persons[0].age}
+              click={this.switchNameHandler.bind(this, 'Roman')}
+            />
+            <Person
+              name={this.state.persons[1].name}
+              age={this.state.persons[1].age}
+              inputNameChange={this.inputNameChangeHandler}
+              selectInput={this.selectInputHandler}
+            >
+              My hobby is chess.
+            </Person>
+            <Person
+              name={this.state.persons[2].name}
+              age={this.state.persons[2].age}
+            />
+          </div>
+        ) : null}
         <UserInput
           userNameChange={this.userNameChangeHandler}
           defaultValue={this.state.userName}
