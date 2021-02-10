@@ -16,13 +16,14 @@ class App extends Component {
     showNames: false,
   };
 
-  switchNameHandler = (newName) => {
+  deletePersonHandler = (index) => {
+    // const personsArray = this.state.persons; // This mutates the array. Bad practice
+    // const personsArray = this.state.persons.slice() // Not mutating the array
+    const personsArray = [...this.state.persons]; // Not mutating the array
+    personsArray.splice(index, 1);
+
     this.setState({
-      persons: [
-        { name: 'John', age: 24 },
-        { name: 'Doe', age: 40 },
-        { name: newName, age: 35 },
-      ],
+      persons: personsArray,
     });
   };
 
@@ -73,8 +74,14 @@ class App extends Component {
     if (this.state.showNames) {
       persons = (
         <div>
-          {this.state.persons.map((person) => {
-            return <Person name={person.name} age={person.age} />;
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                name={person.name}
+                age={person.age}
+                deletePerson={this.deletePersonHandler.bind(this, index)}
+              />
+            );
           })}
         </div>
       );
