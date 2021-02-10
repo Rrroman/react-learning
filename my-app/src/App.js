@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import UserInput from './UserInput/UserInput';
+import UserOutput from './UserOutput/UserOutput';
 
 class App extends Component {
   style = {
@@ -18,6 +20,7 @@ class App extends Component {
       { name: 'Jill', age: 30 },
     ],
     greeting: 'Hello',
+    userName: 'Default User',
   };
 
   switchNameHandler = (newName) => {
@@ -43,6 +46,14 @@ class App extends Component {
   selectInputHandler(event) {
     event.target.select();
   }
+
+  userNameChangeHandler = (event) => {
+    const userName = event.target.value;
+
+    this.setState({
+      userName: userName,
+    });
+  };
 
   render() {
     return (
@@ -71,6 +82,13 @@ class App extends Component {
           name={this.state.persons[2].name}
           age={this.state.persons[2].age}
         />
+        <UserInput
+          userNameChange={this.userNameChangeHandler}
+          defaultValue={this.state.userName}
+          selectInput={this.selectInputHandler}
+        />
+        <UserOutput userName={this.state.userName} />
+        <UserOutput userName={this.state.userName} />
       </div>
     );
   }
