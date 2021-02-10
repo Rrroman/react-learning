@@ -7,9 +7,9 @@ import UserOutput from './UserOutput/UserOutput';
 class App extends Component {
   state = {
     persons: [
-      { name: 'John', age: 25 },
-      { name: 'Doe', age: 40 },
-      { name: 'Jill', age: 30 },
+      { id: 'ls8i493', name: 'John', age: 25 },
+      { id: 'l3sdf8', name: 'Doe', age: 40 },
+      { id: 'as5df234', name: 'Jill', age: 30 },
     ],
     greeting: 'Hello',
     userName: 'Default User',
@@ -79,6 +79,7 @@ class App extends Component {
               <Person
                 name={person.name}
                 age={person.age}
+                key={person.id}
                 deletePerson={this.deletePersonHandler.bind(this, index)}
               />
             );
