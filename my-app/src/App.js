@@ -27,16 +27,6 @@ class App extends Component {
     });
   };
 
-  inputNameChangeHandler = (event) => {
-    this.setState({
-      persons: [
-        { name: 'John', age: 20 },
-        { name: event.target.value, age: 25 },
-        { name: 'Jill', age: 25 },
-      ],
-    });
-  };
-
   selectInputHandler(event) {
     event.target.select();
   }
@@ -55,6 +45,32 @@ class App extends Component {
     this.setState({
       showNames: !doesShow,
     });
+  };
+
+  // 1)variant passing index
+  // inputNameChangeHandler = (index, event) => {
+  //   const person = { ...this.state.persons[index] };
+  //   person.name = event.target.value;
+
+  //   const persons = [...this.state.persons];
+  //   persons[index] = person;
+
+  //   this.setState({ persons: persons });
+  // };
+
+  // 2) variant how to find index with id
+  inputNameChangeHandler = (id, event) => {
+    const personIndex = this.state.persons.findIndex(
+      (person) => person.id === id,
+    );
+
+    const person = { ...this.state.persons[personIndex] };
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({ persons: persons });
   };
 
   render() {
@@ -81,6 +97,11 @@ class App extends Component {
                 age={person.age}
                 key={person.id}
                 deletePerson={this.deletePersonHandler.bind(this, index)}
+                // inputNameChange={this.inputNameChangeHandler.bind(this, index)}
+                inputNameChange={this.inputNameChangeHandler.bind(
+                  this,
+                  person.id,
+                )}
               />
             );
           })}
