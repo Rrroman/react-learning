@@ -4,6 +4,7 @@ import Person from './Person/Person';
 import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
 import Validation from './Validation/Validation';
+import Char from './Char/char';
 
 class App extends Component {
   state = {
@@ -17,6 +18,7 @@ class App extends Component {
     showNames: false,
     textLength: 0,
     textLengthValidMessage: 'We will count if text is big enough.',
+    textMessage: '',
   };
 
   deletePersonHandler = (index) => {
@@ -66,6 +68,10 @@ class App extends Component {
     this.setState({ textLength: event.target.value.length });
   };
 
+  setTextHandler = (event) => {
+    this.setState({ textMessage: event.target.value });
+  };
+
   validationMessageHandler = () => {
     const message =
       this.state.textLength < 5 ? 'Text is too short' : 'Text long enough';
@@ -73,6 +79,18 @@ class App extends Component {
       textLengthValidMessage: message,
     });
   };
+
+  // printCharListHandler = () => {
+  //   if (this.state.textMessage) {
+  //     return (
+  //       <div>
+  //         {this.state.textMessage.split('').map((char) => (
+  //           <Char character={char} />
+  //         ))}
+  //       </div>
+  //     );
+  //   }
+  // };
 
   render() {
     const style = {
@@ -84,6 +102,14 @@ class App extends Component {
       borderRadius: '5px',
       color: 'forest',
       cursor: 'pointer',
+    };
+
+    const textLengthBlockStyle = {
+      width: '60%',
+      backgroundColor: 'azure',
+      margin: '10px auto',
+      padding: '5px',
+      borderRadius: '5px',
     };
 
     let persons = null;
@@ -109,6 +135,17 @@ class App extends Component {
       );
     }
 
+    let message = null;
+    if (this.state.textMessage) {
+      message = (
+        <div>
+          {this.state.textMessage.split('').map((char) => (
+            <Char character={char} />
+          ))}
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <div className="app__title">Hello there!</div>
@@ -123,17 +160,22 @@ class App extends Component {
         />
         <UserOutput userName={this.state.userName} />
         <UserOutput userName={this.state.userName} />
-        <input
-          type="text"
-          placeholder="Enter text"
-          onChange={(event) => {
-            this.setTextLengthHandler(event);
-            this.validationMessageHandler(event);
-          }}
-        />
-        <p>{this.state.textLength}</p>
-        <Validation textLength={this.state.textLengthValidMessage} />
-        {/* <Validation textLength={this.state.textLength}/> */}
+        <div style={textLengthBlockStyle}>
+          <input
+            type="text"
+            placeholder="Enter text"
+            onChange={(event) => {
+              this.setTextLengthHandler(event);
+              this.setTextHandler(event);
+              this.validationMessageHandler(event);
+            }}
+          />
+          <p>{this.state.textLength}</p>
+          <Validation textLength={this.state.textLengthValidMessage} />
+          {/* <Validation textLength={this.state.textLength}/> */}
+          {/* {this.printCharListHandler()} */}
+          {message}
+        </div>
       </div>
     );
   }
