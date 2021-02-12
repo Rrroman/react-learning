@@ -74,34 +74,16 @@ class App extends Component {
     this.setState({ messageArray: event.target.value.split('') });
   };
 
-  validationMessageHandler = () => {
-    const message =
-      this.state.textLength < 5 ? 'Text is too short' : 'Text long enough';
-    this.setState({
-      textLengthValidMessage: message,
-    });
-  };
-
-  // printCharListHandler = () => {
-  //   if (this.state.textMessage) {
-  //     return (
-  //       <div>
-  //         {this.state.textMessage.split('').map((char) => (
-  //           <Char character={char} />
-  //         ))}
-  //       </div>
-  //     );
-  //   }
-  // };
-
   deleteCharHandler = (index, event) => {
     const messageArrayCopy = [...this.state.messageArray];
     messageArrayCopy.splice(index, 1);
 
-    console.log(messageArrayCopy);
+    console.log(messageArrayCopy.length);
+
     this.setState({
       messageArray: messageArrayCopy,
       textMessage: messageArrayCopy.join(''),
+      textLength: messageArrayCopy.length,
     });
   };
 
@@ -188,13 +170,10 @@ class App extends Component {
             onChange={(event) => {
               this.setTextLengthHandler(event);
               this.setTextHandler(event);
-              this.validationMessageHandler(event);
             }}
           />
           <p>{this.state.textLength}</p>
-          <Validation textLength={this.state.textLengthValidMessage} />
-          {/* <Validation textLength={this.state.textLength}/> */}
-          {/* {this.printCharListHandler()} */}
+          <Validation textLength={this.state.textLength} />
           {message}
         </div>
       </div>
