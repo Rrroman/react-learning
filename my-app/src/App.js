@@ -139,8 +139,8 @@ class App extends Component {
     if (this.state.textMessage) {
       message = (
         <div>
-          {this.state.textMessage.split('').map((char) => (
-            <Char character={char} />
+          {this.state.textMessage.split('').map((char, index) => (
+            <Char key={index} character={char} />
           ))}
         </div>
       );
