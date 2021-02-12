@@ -19,6 +19,7 @@ class App extends Component {
     textLength: 0,
     textLengthValidMessage: 'We will count if text is big enough.',
     textMessage: '',
+    messageArray: [],
   };
 
   deletePersonHandler = (index) => {
@@ -70,6 +71,7 @@ class App extends Component {
 
   setTextHandler = (event) => {
     this.setState({ textMessage: event.target.value });
+    this.setState({ messageArray: event.target.value.split('') });
   };
 
   validationMessageHandler = () => {
@@ -91,6 +93,17 @@ class App extends Component {
   //     );
   //   }
   // };
+
+  deleteCharHandler = (index, event) => {
+    const messageArrayCopy = [...this.state.messageArray];
+    messageArrayCopy.splice(index, 1);
+
+    console.log(messageArrayCopy);
+    this.setState({
+      messageArray: messageArrayCopy,
+      textMessage: messageArrayCopy.join(''),
+    });
+  };
 
   render() {
     const style = {
@@ -137,10 +150,16 @@ class App extends Component {
 
     let message = null;
     if (this.state.textMessage) {
+      const messageArray = this.state.messageArray;
+
       message = (
         <div>
-          {this.state.textMessage.split('').map((char, index) => (
-            <Char key={index} character={char} />
+          {messageArray.map((char, index) => (
+            <Char
+              key={index}
+              character={char}
+              deleteChar={this.deleteCharHandler.bind(this, index)}
+            />
           ))}
         </div>
       );
@@ -164,6 +183,8 @@ class App extends Component {
           <input
             type="text"
             placeholder="Enter text"
+            value={this.state.textMessage}
+            onClick={this.selectInputHandler}
             onChange={(event) => {
               this.setTextLengthHandler(event);
               this.setTextHandler(event);
