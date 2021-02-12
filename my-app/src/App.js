@@ -3,6 +3,7 @@ import './App.css';
 import Person from './Person/Person';
 import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
+import Validation from './Validation/Validation';
 
 class App extends Component {
   state = {
@@ -14,12 +15,12 @@ class App extends Component {
     greeting: 'Hello',
     userName: 'Default User',
     showNames: false,
+    textLength: 0,
+    textLengthValidMessage: 'We will count if text is big enough.',
   };
 
   deletePersonHandler = (index) => {
-    // const personsArray = this.state.persons; // This mutates the array. Bad practice
-    // const personsArray = this.state.persons.slice() // Not mutating the array
-    const personsArray = [...this.state.persons]; // Not mutating the array
+    const personsArray = [...this.state.persons];
     personsArray.splice(index, 1);
 
     this.setState({
@@ -47,18 +48,6 @@ class App extends Component {
     });
   };
 
-  // 1)variant passing index
-  // inputNameChangeHandler = (index, event) => {
-  //   const person = { ...this.state.persons[index] };
-  //   person.name = event.target.value;
-
-  //   const persons = [...this.state.persons];
-  //   persons[index] = person;
-
-  //   this.setState({ persons: persons });
-  // };
-
-  // 2) variant how to find index with id
   inputNameChangeHandler = (id, event) => {
     const personIndex = this.state.persons.findIndex(
       (person) => person.id === id,
@@ -71,6 +60,18 @@ class App extends Component {
     persons[personIndex] = person;
 
     this.setState({ persons: persons });
+  };
+
+  setTextLengthHandler = (event) => {
+    this.setState({ textLength: event.target.value.length });
+  };
+
+  validationMessageHandler = () => {
+    const message =
+      this.state.textLength < 5 ? 'Text is too short' : 'Text long enough';
+    this.setState({
+      textLengthValidMessage: message,
+    });
   };
 
   render() {
@@ -97,7 +98,6 @@ class App extends Component {
                 age={person.age}
                 key={person.id}
                 deletePerson={this.deletePersonHandler.bind(this, index)}
-                // inputNameChange={this.inputNameChangeHandler.bind(this, index)}
                 inputNameChange={this.inputNameChangeHandler.bind(
                   this,
                   person.id,
@@ -123,6 +123,17 @@ class App extends Component {
         />
         <UserOutput userName={this.state.userName} />
         <UserOutput userName={this.state.userName} />
+        <input
+          type="text"
+          placeholder="Enter text"
+          onChange={(event) => {
+            this.setTextLengthHandler(event);
+            this.validationMessageHandler(event);
+          }}
+        />
+        <p>{this.state.textLength}</p>
+        <Validation textLength={this.state.textLengthValidMessage} />
+        {/* <Validation textLength={this.state.textLength}/> */}
       </div>
     );
   }
