@@ -1,11 +1,7 @@
-.red {
-  background-color: crimson;
+.bold {
+  font-weight: bold;
 }
 
-.blue {
-  background-color: blue;
-}
-
-.yellow {
-  background-color: yellow;
+.border-radius {
+  border-radius: 10px;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import './Char.css';
 
 const Char = (props) => {
   const style = {
@@ -9,7 +10,8 @@ const Char = (props) => {
     cursor: 'pointer',
   };
 
-  const colors = ['blue', 'yellow', 'red'];
+  const colors = ['blue', 'yellow', 'tomato'];
+  const classes = [];
 
   if (props.index % 2) {
     style.color = colors[0];
@@ -17,18 +19,16 @@ const Char = (props) => {
 
   if (props.index % 3) {
     style.color = colors[1];
+    classes.push('bold');
   }
 
   if (props.index % 5) {
     style.color = colors[2];
+    classes.push('border-radius');
   }
 
   return (
-    <p
-      style={style}
-      onClick={props.deleteChar}
-      // className={colors.join(' ')}
-    >
+    <p style={style} onClick={props.deleteChar} className={classes.join(' ')}>
       {props.character}
     </p>
   );
