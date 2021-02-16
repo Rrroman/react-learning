@@ -4,7 +4,8 @@ import Person from './Person/Person';
 import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
 import Validation from './Validation/Validation';
-import Char from './Char/char';
+import Char from './Char/Char';
+import WishlistForm from './Codewars/Codewars';
 
 class App extends Component {
   state = {
@@ -138,6 +139,7 @@ class App extends Component {
         <div>
           {messageArray.map((char, index) => (
             <Char
+              index={index}
               key={index}
               character={char}
               deleteChar={this.deleteCharHandler.bind(this, index)}
@@ -176,6 +178,7 @@ class App extends Component {
           <Validation textLength={this.state.textLength} />
           {message}
         </div>
+        <WishlistForm />
       </div>
     );
   }
