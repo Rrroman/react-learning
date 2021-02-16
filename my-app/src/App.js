@@ -6,6 +6,7 @@ import UserOutput from './UserOutput/UserOutput';
 import Validation from './Validation/Validation';
 import Char from './Char/Char';
 import WishlistForm from './Codewars/Codewars';
+import BeamMeUpStatey from './Codewars/BeamMeUpStatey';
 
 class App extends Component {
   state = {
@@ -179,6 +180,7 @@ class App extends Component {
           {message}
         </div>
         <WishlistForm />
+        <BeamMeUpStatey />
       </div>
     );
   }
