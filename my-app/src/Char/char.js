@@ -14,11 +14,11 @@ const Char = (props) => {
   const colors = ['blue', 'yellow', 'tomato'];
   const classes = [];
 
-  if (props.index % 2) {
+  if (props.index % 2 === 0) {
     style.color = colors[0];
   }
 
-  if (props.index % 3) {
+  if (props.index % 3 === 0) {
     style.color = colors[1];
     classes.push('bold');
     style[':hover'] = {
@@ -26,7 +26,12 @@ const Char = (props) => {
     };
   }
 
-  if (props.index % 5) {
+  if (props.index % 4 === 0) {
+    style.color = colors[3];
+    classes.push('border-radius50');
+  }
+
+  if (props.index % 5 === 0) {
     style.color = colors[2];
     classes.push('border-radius');
   }
