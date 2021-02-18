@@ -7,7 +7,6 @@ import Validation from './Validation/Validation';
 import Char from './Char/Char';
 import WishlistForm from './Codewars/Codewars';
 // import BeamMeUpStatey from './Codewars/BeamMeUpStatey';
-import Radium from 'radium';
 
 class App extends Component {
   state = {
@@ -100,9 +99,9 @@ class App extends Component {
       borderRadius: '5px',
       color: 'forest',
       cursor: 'pointer',
-      ':hover': {
-        backgroundColor: '#aaac4e',
-      },
+      // ':hover': {
+      //   backgroundColor: '#aaac4e',
+      // },
     };
 
     const textLengthBlockStyle = {
@@ -155,39 +154,39 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <div className="app__title">Hello there!</div>
-        <button style={style} onClick={this.toggleNameHandler}>
-          Toggle names
-        </button>
-        {persons}
-        <UserInput
-          userNameChange={this.userNameChangeHandler}
-          defaultValue={this.state.userName}
-          selectInput={this.selectInputHandler}
-        />
-        <UserOutput userName={this.state.userName} />
-        <UserOutput userName={this.state.userName} />
-        <div style={textLengthBlockStyle}>
-          <input
-            type="text"
-            placeholder="Enter text"
-            value={this.state.textMessage}
-            onClick={this.selectInputHandler}
-            onChange={(event) => {
-              this.setTextLengthHandler(event);
-              this.setTextHandler(event);
-            }}
+        <div className="App">
+          <div className="app__title">Hello there!</div>
+          <button style={style} onClick={this.toggleNameHandler}>
+            Toggle names
+          </button>
+          {persons}
+          <UserInput
+            userNameChange={this.userNameChangeHandler}
+            defaultValue={this.state.userName}
+            selectInput={this.selectInputHandler}
           />
-          <p>{this.state.textLength}</p>
-          <Validation textLength={this.state.textLength} />
-          {message}
+          <UserOutput userName={this.state.userName} />
+          <UserOutput userName={this.state.userName} />
+          <div style={textLengthBlockStyle}>
+            <input
+              type="text"
+              placeholder="Enter text"
+              value={this.state.textMessage}
+              onClick={this.selectInputHandler}
+              onChange={(event) => {
+                this.setTextLengthHandler(event);
+                this.setTextHandler(event);
+              }}
+            />
+            <p>{this.state.textLength}</p>
+            <Validation textLength={this.state.textLength} />
+            {message}
+          </div>
+          <WishlistForm />
+          {/* <BeamMeUpStatey /> */}
         </div>
-        <WishlistForm />
-        {/* <BeamMeUpStatey /> */}
-      </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;
