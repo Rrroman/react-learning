@@ -1,5 +1,6 @@
 import React from 'react';
 import './Char.css';
+import Radium from 'radium';
 
 const Char = (props) => {
   const style = {
@@ -20,6 +21,9 @@ const Char = (props) => {
   if (props.index % 3) {
     style.color = colors[1];
     classes.push('bold');
+    style[':hover'] = {
+      backgroundColor: 'pink',
+    };
   }
 
   if (props.index % 5) {
@@ -34,4 +38,4 @@ const Char = (props) => {
   );
 };
 
-export default Char;
+export default Radium(Char);
