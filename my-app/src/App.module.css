@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+.app__title {
+  font-size: 34px;
+}
+
+.App-button {
+  display: block;
+  margin: 10px auto;
+  padding: 5px;
+
+  background-color: coral;
+  border-radius: 5px;
+  color: forest;
+  cursor: pointer;
+}
+
+.App-button:hover {
+  background-color: #aaac4e;
+}

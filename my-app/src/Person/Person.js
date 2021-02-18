@@ -2,6 +2,13 @@ import React from 'react';
 import classes from './Person.module.css';
 
 const person = (props) => {
+  const random = Math.random();
+  console.log(random);
+
+  if (random > 0.9) {
+    throw new Error('Something went wrong');
+  }
+
   return (
     <div className={classes.Person}>
       <p onClick={props.deletePerson}>

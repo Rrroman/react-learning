@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.module.css';
 import Person from './Person/Person';
 import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
@@ -7,6 +7,7 @@ import Validation from './Validation/Validation';
 import Char from './Char/Char';
 // import WishlistForm from './Codewars/Codewars';
 // import BeamMeUpStatey from './Codewars/BeamMeUpStatey';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -90,20 +91,6 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      display: 'block',
-      margin: '10px auto',
-      padding: '5px',
-
-      backgroundColor: 'coral',
-      borderRadius: '5px',
-      color: 'forest',
-      cursor: 'pointer',
-      // ':hover': {
-      //   backgroundColor: '#aaac4e',
-      // },
-    };
-
     const textLengthBlockStyle = {
       width: '60%',
       backgroundColor: 'azure',
@@ -119,16 +106,18 @@ class App extends Component {
         <div>
           {this.state.persons.map((person, index) => {
             return (
-              <Person
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                deletePerson={this.deletePersonHandler.bind(this, index)}
-                inputNameChange={this.inputNameChangeHandler.bind(
-                  this,
-                  person.id,
-                )}
-              />
+              <ErrorBoundary>
+                <Person
+                  name={person.name}
+                  age={person.age}
+                  key={person.id}
+                  deletePerson={this.deletePersonHandler.bind(this, index)}
+                  inputNameChange={this.inputNameChangeHandler.bind(
+                    this,
+                    person.id,
+                  )}
+                />
+              </ErrorBoundary>
             );
           })}
         </div>
@@ -154,9 +143,12 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <div className="app__title">Hello there!</div>
-        <button style={style} onClick={this.toggleNameHandler}>
+      <div className={classes.App}>
+        <div className={classes.app__title}>Hello there!</div>
+        <button
+          className={classes['App-button']}
+          onClick={this.toggleNameHandler}
+        >
           Toggle names
         </button>
         {persons}
