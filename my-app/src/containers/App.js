@@ -120,6 +120,7 @@ class App extends Component {
           changedText={this.setTextHandler.bind(this)}
           messageArray={this.state.messageArray}
           deletedChar={this.deleteCharHandler}
+          textLength={this.state.textLength}
         />
         {/* <WishlistForm /> */}
         {/* <BeamMeUpStatey /> */}

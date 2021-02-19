@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Chars.module.css';
 
-import Validation from '../Validation/Validation';
+import Validation from './Validation/Validation';
 import Char from './Char/Char';
 
 const Chars = (props) => {
