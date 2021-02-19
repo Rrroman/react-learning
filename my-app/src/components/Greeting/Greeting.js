@@ -5,7 +5,7 @@ const Greeting = (props) => {
   useEffect(() => {
     console.log('Greeting.js -> useEffecting...');
     setTimeout(() => {
-      setTimeout(() => alert('Saved data to cloud!'));
+      alert('Saved data to cloud!');
     }, 1000);
     // if empty array - [], same behavior as componentDidMount ( Only first time will fire)
   }, []);
