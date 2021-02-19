@@ -3,6 +3,8 @@ import classes from './Person.module.css';
 
 class Person extends Component {
   render() {
+    console.log('Person.js -> rendering');
+
     const random = Math.random();
 
     if (random > 0.98) {

@@ -9,6 +9,11 @@ import Chars from '../components/Chars/Chars';
 // import BeamMeUpStatey from './Codewars/BeamMeUpStatey';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('App.js -> constructor');
+  }
+
   state = {
     persons: [
       { id: 'ls8i493', name: 'John', age: 25 },
@@ -19,10 +24,22 @@ class App extends Component {
     userName: 'Default User',
     showNames: false,
     textLength: 0,
-    textLengthValidMessage: 'We will count if text is big enough.',
     textMessage: '',
     messageArray: [],
   };
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('App.js -> getDerivedStateFromProps', props, state);
+    return state;
+  }
+
+  // componentWillMount() {
+  //   console.log('App.js -> componentWillMount');
+  // }
+
+  componentDidMount() {
+    console.log('App.js -> componentDidMount');
+  }
 
   deletePersonHandler = (index) => {
     const personsArray = [...this.state.persons];
@@ -90,6 +107,7 @@ class App extends Component {
   };
 
   render() {
+    console.log('App.js -> rendering...');
     let persons = null;
 
     if (this.state.showNames) {
