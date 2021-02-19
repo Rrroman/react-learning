@@ -98,13 +98,17 @@ class App extends Component {
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
           changed={this.inputNameChangeHandler}
+          focused={this.selectInputHandler}
         />
       );
     }
 
     return (
       <div className={classes.App}>
-        <Greeting clicked={this.toggleNameHandler} />
+        <Greeting
+          clicked={this.toggleNameHandler}
+          appTitle={this.props.appTitle}
+        />
         {persons}
         <UserInput
           userNameChange={this.userNameChangeHandler}
