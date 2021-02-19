@@ -135,6 +135,7 @@ class App extends Component {
         <Greeting
           clicked={this.toggleNameHandler}
           appTitle={this.props.appTitle}
+          persons={this.state.persons}
         />
         {persons}
         <UserInput
