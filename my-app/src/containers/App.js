@@ -7,7 +7,6 @@ import Greeting from '../components/Greeting/Greeting';
 import Chars from '../components/Chars/Chars';
 // import WishlistForm from './Codewars/Codewars';
 // import BeamMeUpStatey from './Codewars/BeamMeUpStatey';
-// import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
