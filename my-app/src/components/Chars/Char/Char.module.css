@@ -1,0 +1,23 @@
+.bold {
+  font-weight: bold;
+}
+
+.bold:hover {
+  background-color: pink;
+}
+
+.border-radius {
+  border-radius: 10px;
+}
+
+.border-radius50 {
+  border-radius: 50%;
+}
+
+.Char {
+  display: inline-block;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid black;
+  cursor: pointer;
+}

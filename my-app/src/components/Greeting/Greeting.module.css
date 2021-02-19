@@ -1,12 +1,8 @@
-.App {
-  text-align: center;
-}
-
-.app__title {
+.greeting__title {
   font-size: 34px;
 }
 
-.App-button {
+.greeting__button {
   display: block;
   margin: 10px auto;
   padding: 5px;
@@ -17,6 +13,6 @@
   cursor: pointer;
 }
 
-.App-button:hover {
+.greeting__button:hover {
   background-color: #aaac4e;
 }

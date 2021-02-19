@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import classes from './App.module.css';
-import Person from './Person/Person';
-import UserInput from './UserInput/UserInput';
-import UserOutput from './UserOutput/UserOutput';
-import Validation from './Validation/Validation';
-import Char from './Char/Char';
+import Persons from '../components/Persons/Persons';
+import UserInput from '../components/UserInput/UserInput';
+import UserOutput from '../components/UserOutput/UserOutput';
+import Greeting from '../components/Greeting/Greeting';
+import Chars from '../components/Chars/Chars';
 // import WishlistForm from './Codewars/Codewars';
 // import BeamMeUpStatey from './Codewars/BeamMeUpStatey';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+// import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -77,7 +77,7 @@ class App extends Component {
     this.setState({ messageArray: event.target.value.split('') });
   };
 
-  deleteCharHandler = (index, event) => {
+  deleteCharHandler = (index) => {
     const messageArrayCopy = [...this.state.messageArray];
     messageArrayCopy.splice(index, 1);
 
@@ -91,66 +91,21 @@ class App extends Component {
   };
 
   render() {
-    const textLengthBlockStyle = {
-      width: '60%',
-      backgroundColor: 'azure',
-      margin: '10px auto',
-      padding: '5px',
-      borderRadius: '5px',
-    };
-
     let persons = null;
 
     if (this.state.showNames) {
       persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <ErrorBoundary>
-                <Person
-                  name={person.name}
-                  age={person.age}
-                  key={person.id}
-                  deletePerson={this.deletePersonHandler.bind(this, index)}
-                  inputNameChange={this.inputNameChangeHandler.bind(
-                    this,
-                    person.id,
-                  )}
-                />
-              </ErrorBoundary>
-            );
-          })}
-        </div>
-      );
-    }
-
-    let message = null;
-    if (this.state.textMessage) {
-      const messageArray = this.state.messageArray;
-
-      message = (
-        <div>
-          {messageArray.map((char, index) => (
-            <Char
-              index={index}
-              key={index}
-              character={char}
-              deleteChar={this.deleteCharHandler.bind(this, index)}
-            />
-          ))}
-        </div>
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.inputNameChangeHandler}
+        />
       );
     }
 
     return (
       <div className={classes.App}>
-        <div className={classes.app__title}>Hello there!</div>
-        <button
-          className={classes['App-button']}
-          onClick={this.toggleNameHandler}
-        >
-          Toggle names
-        </button>
+        <Greeting clicked={this.toggleNameHandler} />
         {persons}
         <UserInput
           userNameChange={this.userNameChangeHandler}
@@ -159,21 +114,14 @@ class App extends Component {
         />
         <UserOutput userName={this.state.userName} />
         <UserOutput userName={this.state.userName} />
-        <div style={textLengthBlockStyle}>
-          <input
-            type="text"
-            placeholder="Enter text"
-            value={this.state.textMessage}
-            onClick={this.selectInputHandler}
-            onChange={(event) => {
-              this.setTextLengthHandler(event);
-              this.setTextHandler(event);
-            }}
-          />
-          <p>{this.state.textLength}</p>
-          <Validation textLength={this.state.textLength} />
-          {message}
-        </div>
+        <Chars
+          textMessage={this.state.textMessage}
+          clicked={this.selectInputHandler}
+          changedTextLength={this.setTextLengthHandler.bind(this)}
+          changedText={this.setTextHandler.bind(this)}
+          messageArray={this.state.messageArray}
+          deletedChar={this.deleteCharHandler}
+        />
         {/* <WishlistForm /> */}
         {/* <BeamMeUpStatey /> */}
       </div>

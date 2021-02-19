@@ -1,0 +1,14 @@
+.Person {
+  width: 50%;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: rgb(255, 140, 98);
+  box-shadow: 3px 3px 3px #a3a2a2;
+}
+
+@media (max-width: 600px) {
+  .Person-input {
+    width: 80%;
+    background-color: #aaac4e;
+  }
+}
