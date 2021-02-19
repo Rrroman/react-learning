@@ -41,6 +41,15 @@ class App extends Component {
     console.log('App.js -> componentDidMount');
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('App.js -> shouldComponentUpdate', nextProps, nextState);
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log('App.js -> componentDidUpdate');
+  }
+
   deletePersonHandler = (index) => {
     const personsArray = [...this.state.persons];
     personsArray.splice(index, 1);
