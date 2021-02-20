@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import classes from './Person.module.css';
 
+import Aux from '../../../hoc/Auxillary';
+
 class Person extends Component {
   render() {
     console.log('Person.js -> rendering');
@@ -12,7 +14,8 @@ class Person extends Component {
     }
 
     return (
-      <div className={classes.Person}>
+      // <div className={classes.Person}>
+      <Aux>
         <p onClick={this.props.deletePerson}>
           {this.props.name} is here and my age is {this.props.age}
         </p>
@@ -24,7 +27,8 @@ class Person extends Component {
           onFocus={this.props.focused}
         />
         <p>{this.props.children}</p>
-      </div>
+      </Aux>
+      //  </div>
     );
   }
 }
