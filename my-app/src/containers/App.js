@@ -7,6 +7,7 @@ import Greeting from '../components/Greeting/Greeting';
 import Chars from '../components/Chars/Chars';
 // import WishlistForm from './Codewars/Codewars';
 // import BeamMeUpStatey from './Codewars/BeamMeUpStatey';
+import WithClass from '../hoc/WithClass';
 
 class App extends Component {
   constructor(props) {
@@ -138,7 +139,7 @@ class App extends Component {
     }
 
     return (
-      <div className={classes.App}>
+      <WithClass classes={classes.App}>
         <button
           className={classes.app__button}
           onClick={this.toggleGreetingHandler}
@@ -171,7 +172,7 @@ class App extends Component {
         />
         {/* <WishlistForm /> */}
         {/* <BeamMeUpStatey /> */}
-      </div>
+      </WithClass>
     );
   }
 }
