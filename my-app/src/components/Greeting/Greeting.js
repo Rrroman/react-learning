@@ -7,9 +7,17 @@ const Greeting = (props) => {
     setTimeout(() => {
       alert('Saved data to cloud!');
     }, 1000);
-    // if empty array - [], same behavior as componentDidMount ( Only first time will fire)
+    return () => {
+      console.log('Greeting.js -> clean Up work in useEffect');
+    };
   }, []);
-  // }, [props.persons]);
+
+  useEffect(() => {
+    console.log('Greeting.js -> 2nd useEffect');
+    return () => {
+      console.log('Greeting.js -> 2nd clean Up work in useEffect');
+    };
+  });
 
   return (
     <div>

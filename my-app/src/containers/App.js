@@ -26,6 +26,7 @@ class App extends Component {
     textLength: 0,
     textMessage: '',
     messageArray: [],
+    showGreeting: true,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -115,6 +116,12 @@ class App extends Component {
     });
   };
 
+  toggleGreetingHandler = () => {
+    this.setState({
+      greeting: !this.state.greeting,
+    });
+  };
+
   render() {
     console.log('App.js -> rendering...');
     let persons = null;
@@ -132,11 +139,19 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        <Greeting
-          clicked={this.toggleNameHandler}
-          appTitle={this.props.appTitle}
-          persons={this.state.persons}
-        />
+        <button
+          className={classes.app__button}
+          onClick={this.toggleGreetingHandler}
+        >
+          Toggle greeting
+        </button>
+        {this.state.greeting ? (
+          <Greeting
+            clicked={this.toggleNameHandler}
+            appTitle={this.props.appTitle}
+            persons={this.state.persons}
+          />
+        ) : null}
         {persons}
         <UserInput
           userNameChange={this.userNameChangeHandler}
