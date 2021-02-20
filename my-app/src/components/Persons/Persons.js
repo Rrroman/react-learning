@@ -5,7 +5,11 @@ import Person from './Person/Person';
 class Persons extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     console.log('PersonS.js -> shouldComponentUpdate', nextProps, nextState);
-    return true;
+    if (nextProps.persons !== this.props.persons) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {

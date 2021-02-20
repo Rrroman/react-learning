@@ -4,11 +4,10 @@ import classes from './Greeting.module.css';
 const Greeting = (props) => {
   useEffect(() => {
     console.log('Greeting.js -> useEffecting...');
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       alert('Saved data to cloud!');
     }, 1000);
     return () => {
-      clearTimeout(timer);
       console.log('Greeting.js -> clean Up work in useEffect');
     };
   }, []);
