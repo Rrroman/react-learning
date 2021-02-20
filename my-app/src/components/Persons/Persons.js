@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+// import React, { Component } from 'react';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Person from './Person/Person';
 
-class Persons extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('PersonS.js -> shouldComponentUpdate', nextProps, nextState);
-    if (nextProps.persons !== this.props.persons) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+class Persons extends PureComponent {
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('PersonS.js -> shouldComponentUpdate', nextProps, nextState);
+  //   if (
+  //     nextProps.persons !== this.props.persons ||
+  //     nextProps.deletePerson !== this.props.deletePerson ||
+  //     nextProps.changed !== this.props.changed
+  //   ) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('PersonS.js -> getSnapshotBeforeUpdate', prevProps, prevState);

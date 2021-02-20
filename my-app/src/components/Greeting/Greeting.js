@@ -29,4 +29,4 @@ const Greeting = (props) => {
   );
 };
 
-export default Greeting;
+export default React.memo(Greeting);
