@@ -10,9 +10,13 @@ class Person extends Component {
     this.inputElementReference = React.createRef();
   }
 
+  static contextType = AuthContext;
+
   componentDidMount() {
     // this.inputElement.focus();
     this.inputElementReference.current.focus();
+    console.log(this.context.isLoggedIn);
+    console.log(this.context.login);
   }
 
   render() {
@@ -28,15 +32,11 @@ class Person extends Component {
       // <div className={classes.Person}>
       // <React.Fragment>
       <Aux>
-        <AuthContext.Consumer>
-          {(context) => {
-            return context.isLoggedIn ? (
-              <p>Is logged in!~</p>
-            ) : (
-              <p>Please log in!</p>
-            );
-          }}
-        </AuthContext.Consumer>
+        {this.context.isLoggedIn ? (
+          <p>Is logged in!~</p>
+        ) : (
+          <p>Please log in!</p>
+        )}
 
         <p onClick={this.props.deletePerson}>
           {this.props.name} is here and my age is {this.props.age}

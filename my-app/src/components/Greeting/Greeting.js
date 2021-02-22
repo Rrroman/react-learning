@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import classes from './Greeting.module.css';
 import AuthContext from '../../context/auth-context';
 
 const Greeting = (props) => {
   const toggleButtonRef = useRef(null);
+
+  const authContext = useContext(AuthContext);
 
   useEffect(() => {
     console.log('Greeting.js -> useEffecting...');
@@ -34,9 +36,8 @@ const Greeting = (props) => {
       >
         Toggle names
       </button>
-      <AuthContext.Consumer>
-        {(context) => <button onClick={context.login}>Login in!</button>}
-      </AuthContext.Consumer>
+
+      {<button onClick={authContext.login}>Login in!</button>}
     </div>
   );
 };
