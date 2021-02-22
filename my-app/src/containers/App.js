@@ -7,7 +7,8 @@ import Greeting from '../components/Greeting/Greeting';
 import Chars from '../components/Chars/Chars';
 // import WishlistForm from './Codewars/Codewars';
 // import BeamMeUpStatey from './Codewars/BeamMeUpStatey';
-import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Auxillary';
 
 class App extends Component {
   constructor(props) {
@@ -139,7 +140,7 @@ class App extends Component {
     }
 
     return (
-      <WithClass classes={classes.App}>
+      <Aux>
         <button
           className={classes.app__button}
           onClick={this.toggleGreetingHandler}
@@ -172,9 +173,9 @@ class App extends Component {
         />
         {/* <WishlistForm /> */}
         {/* <BeamMeUpStatey /> */}
-      </WithClass>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
