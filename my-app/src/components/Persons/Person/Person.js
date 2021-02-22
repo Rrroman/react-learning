@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import classes from './Person.module.css';
-// import Aux from '../../../hoc/Auxillary';
+import Aux from '../../../hoc/Auxillary';
+import withClass from '../../../hoc/withClass';
 
 class Person extends Component {
   render() {
@@ -14,9 +15,8 @@ class Person extends Component {
 
     return (
       // <div className={classes.Person}>
-      // <Aux>
       // <React.Fragment>
-      <Fragment classes={classes.Person}>
+      <Aux>
         <p onClick={this.props.deletePerson}>
           {this.props.name} is here and my age is {this.props.age}
         </p>
@@ -28,12 +28,11 @@ class Person extends Component {
           onFocus={this.props.focused}
         />
         <p>{this.props.children}</p>
-      </Fragment>
+      </Aux>
       // </React.Fragment>
-      // </Aux>
       //  </div>
     );
   }
 }
 
-export default Person;
+export default withClass(Person, classes.Person);
