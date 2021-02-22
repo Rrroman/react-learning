@@ -4,6 +4,16 @@ import Aux from '../../../hoc/Auxillary';
 import withClass from '../../../hoc/withClass';
 
 class Person extends Component {
+  constructor(props) {
+    super(props);
+    this.inputElementReference = React.createRef();
+  }
+
+  componentDidMount() {
+    // this.inputElement.focus();
+    this.inputElementReference.current.focus();
+  }
+
   render() {
     console.log('Person.js -> rendering');
 
@@ -26,11 +36,13 @@ class Person extends Component {
           onChange={this.props.changed}
           defaultValue={this.props.name}
           onFocus={this.props.focused}
+          ref={this.inputElementReference}
+          // ref={(inputElement) => (this.inputElement = inputElement)}
         />
         <p>{this.props.children}</p>
       </Aux>
       // </React.Fragment>
-      //  </div>
+      // </div>
     );
   }
 }
