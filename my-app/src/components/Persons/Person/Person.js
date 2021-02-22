@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import classes from './Person.module.css';
 import Aux from '../../../hoc/Auxillary';
 import withClass from '../../../hoc/withClass';
+import AuthContext from '../../../context/auth-context';
 
 class Person extends Component {
   constructor(props) {
@@ -27,6 +28,16 @@ class Person extends Component {
       // <div className={classes.Person}>
       // <React.Fragment>
       <Aux>
+        <AuthContext.Consumer>
+          {(context) => {
+            return context.isLoggedIn ? (
+              <p>Is logged in!~</p>
+            ) : (
+              <p>Please log in!</p>
+            );
+          }}
+        </AuthContext.Consumer>
+
         <p onClick={this.props.deletePerson}>
           {this.props.name} is here and my age is {this.props.age}
         </p>

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import classes from './Greeting.module.css';
+import AuthContext from '../../context/auth-context';
 
 const Greeting = (props) => {
   const toggleButtonRef = useRef(null);
@@ -33,6 +34,9 @@ const Greeting = (props) => {
       >
         Toggle names
       </button>
+      <AuthContext.Consumer>
+        {(context) => <button onClick={context.login}>Login in!</button>}
+      </AuthContext.Consumer>
     </div>
   );
 };

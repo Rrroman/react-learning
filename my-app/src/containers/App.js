@@ -9,6 +9,7 @@ import Chars from '../components/Chars/Chars';
 // import BeamMeUpStatey from './Codewars/BeamMeUpStatey';
 import withClass from '../hoc/withClass';
 import Aux from '../hoc/Auxillary';
+import AuthContext from '../context/auth-context';
 
 class App extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class App extends Component {
     messageArray: [],
     showGreeting: true,
     changeCounter: 0,
+    isLoggedIn: false,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -130,6 +132,10 @@ class App extends Component {
     });
   };
 
+  loginHandler = () => {
+    this.setState({ isLoggedIn: !this.state.isLoggedIn });
+  };
+
   render() {
     console.log('App.js -> rendering...');
     let persons = null;
@@ -140,7 +146,6 @@ class App extends Component {
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
           changed={this.inputNameChangeHandler}
-          focused={this.selectInputHandler}
         />
       );
     }
@@ -153,14 +158,22 @@ class App extends Component {
         >
           Toggle greeting
         </button>
-        {this.state.greeting ? (
-          <Greeting
-            clicked={this.toggleNameHandler}
-            appTitle={this.props.appTitle}
-            persons={this.state.persons}
-          />
-        ) : null}
-        {persons}
+        <AuthContext.Provider
+          value={{
+            isLoggedIn: this.state.isLoggedIn,
+            login: this.loginHandler,
+          }}
+        >
+          {this.state.greeting ? (
+            <Greeting
+              clicked={this.toggleNameHandler}
+              appTitle={this.props.appTitle}
+              persons={this.state.persons}
+            />
+          ) : null}
+          {persons}
+        </AuthContext.Provider>
+
         <UserInput
           userNameChange={this.userNameChangeHandler}
           defaultValue={this.state.userName}
